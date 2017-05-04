@@ -1,0 +1,97 @@
+<link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/polymer/polymer.html">
+
+<dom-module id="broken-todo">
+  <template>
+
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div>
+      <input id="todoValue" value="{{todoValue::input}}">
+      <button on-click="cancel">Cancel</button>
+      <button on-click="save">Save</button>
+    </div>
+
+    <template is="dom-if" if="[[!todos.length]]">
+      <div>You have nothing to do.</div>
+    </template>
+
+    <template is="dom-if" if="[[todos.length]]">
+      <ul>
+        <template is="dom-repeat" as="todo" items="[[todos]]">
+          <li item-index$="[[index]]">
+            <button on-click="toggleEnabled">x</button>
+            <button on-click="edit" disabled=[[!todo.enabled]]>[[todo.value]]</button>
+          </li>
+        </template>
+      </ul>
+    </template>
+
+  </template>
+
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        is: 'broken-todo',
+        properties: {
+          todos: {
+            type: Array,
+            value: []
+          },
+          todoValue: {
+            type: String,
+            value: ''
+          },
+          todoIndex: {
+            type: Number
+          }
+        },
+        save: function () {
+          const index = this.todoIndex;
+          const value = this.todoValue;
+
+          if (!index) {
+            this.push('todos', {
+              value,
+              enabled: true
+            });
+          } else {
+            this.set(`todos.${index}`, {
+              value,
+              enabled: true
+            });
+          }
+
+          this.clearTodoValue();
+        },
+        clearTodoValue: function () {
+          this.set('todoIndex', null);
+          this.set('todoValue', null);
+          this.$.todoValue.value = '';
+        },
+        cancel: function () {
+          this.$.todoValue.value = '';
+        },
+        toggleEnabled: function (event) {
+          const target = event.target;
+          const index = +(target.parentElement.getAttribute('item-index'));
+          const todo = this.get(`todos.${index}`);
+
+          this.set(`todos.${index}.enabled`, !todo.enabled);
+        },
+        edit: function (event) {
+          const target = event.target;
+          const index = +(target.parentElement.getAttribute('item-index'));
+
+          this.todoIndex = index;
+          this.todoValue = this.todos[index].value;
+        }
+      });
+    })();
+  </script>
+</dom-module>
