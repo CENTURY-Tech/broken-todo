@@ -23,8 +23,8 @@
       <ul>
         <template is="dom-repeat" as="todo" items="[[todos]]">
           <li item-index$="[[index]]">
-            <button on-click="toggleEnabled">x</button>
-            <button on-click="edit" disabled=[[!todo.enabled]]>[[todo.value]]</button>
+            <input type="checkbox" on-click="toggleEnabled">
+            <span on-click="edit" class$="[[disabledClass(todo.enabled)]]">[[todo.value]]</span>
           </li>
         </template>
       </ul>
@@ -90,6 +90,9 @@
 
           this.todoIndex = index;
           this.todoValue = this.todos[index].value;
+        },
+        disabledClass: function (isEnabled) {
+          return isEnabled ? "enabled" : "disabled";
         }
       });
     })();
