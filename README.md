@@ -1,13 +1,13 @@
-# broken-todo
-a broken todo example with polymer
+# Broken Todo
+A broken todo example with Polymer
 
-## how to run
-Load the files with any http server.
+### How to run
+Load the files with any HTTP server.
 
-example:
+### Example:
 ```
 $ npm install -g http-server
 $ http-server .
 ```
 
-go to http://127.0.0.1:8080
+Goto: http://127.0.0.1:8080
