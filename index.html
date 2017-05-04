@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Broken Todo List</title>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <script src="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <title>Broken Todo List</title>
 
-  <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/iron-collapse/iron-collapse.html">
-  <link rel="import" href="./broken-todo.html">
+    <script src="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
 
-  <style>
-    .collapseTitle {
-      cursor: pointer;
-    }
-    li.bug iron-collapse{
-      background: #eee;
-      padding: 1em;
-    }
-  </style>
-</head>
+    <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/iron-collapse/iron-collapse.html">
+    <link rel="import" href="./broken-todo.html">
 
-<body>
-  <h2>Broken Todo</h2>
-  <p>
-    <h3>Known Bugs:</h3>
-    <ul class="bugs">
-      <li class="bug">
-        <strong class="collapseTitle">should not add empty items</strong>
-        <iron-collapse id="collapse">
+    <style>
+      .collapse-title {
+        cursor: pointer;
+      }
+
+      iron-collapse {
+        background: #eee;
+        padding: 1em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Broken Todo</h2>
+
+    <p>
+      <h3>Known Bugs:</h3>
+
+      <ul class="bugs collapses">
+        <li class="bug">
+          <strong class="collapse-title">should not add empty items</strong>
+          <iron-collapse id="collapse">
             <h4>Steps to Reproduce</h4>
             <ul>
               <li>Press save. A new todo item with an empty title was added.</li>
             </ul>
             <h4>Expected Behaviour</h4>
             <div>No item should be added. Cancel should be disabled until text is added</div>
-        </iron-collapse>
-      </li>
-      <li class="bug">
-        <strong class="collapseTitle">cancel should reset the input</strong>
-        <iron-collapse id="collapse">
+          </iron-collapse>
+        </li>
+
+        <li class="bug">
+          <strong class="collapse-title">cancel should reset the input</strong>
+          <iron-collapse id="collapse">
             <h4>Steps to Reproduce</h4>
             <ul>
               <li>Type something in the input element</li>
@@ -50,11 +55,12 @@
             </ul>
             <h4>Expected Behaviour</h4>
             <div>No item should be added.</div>
-        </iron-collapse>
-      </li>
-      <li class="bug">
-        <strong class="collapseTitle">editing the first item duplicates it</strong>
-        <iron-collapse id="collapse">
+          </iron-collapse>
+        </li>
+
+        <li class="bug">
+          <strong class="collapse-title">editing the first item duplicates it</strong>
+          <iron-collapse id="collapse">
             <h4>Steps to Reproduce</h4>
             <ul>
               <li>Add several todo items</li>
@@ -64,38 +70,52 @@
             </ul>
             <h4>Expected Behaviour</h4>
             <div>It should change the title of the first item in the todo list.</div>
-        </iron-collapse>
-      </li>
-      <li class="bug">
-        <strong class="collapseTitle">disabled items may still be editable</strong>
-        <iron-collapse id="collapse">
-          <div>
-            <h4>Steps to Reproduce</h4>
-            <ul>
-              <li>Add several todo items</li>
-              <li>Click on the second task in the list</li>
-              <li>Disable the task by pressing the x button</li>
-              <li>change the value in the top input</li>
-              <li>press save</li>
-            </ul>
-            <h4>Expected Behaviour</h4>
-            <div>The input should have been cleared when the todo was disabled</div>
-          </div>
-        </iron-collapse>
-      </li>
-    </ul>
-  </p>
+          </iron-collapse>
+        </li>
 
-  <broken-todo max-items="10"></broken-todo>
+        <li class="bug">
+          <strong class="collapse-title">disabled items may still be editable</strong>
+          <iron-collapse id="collapse">
+            <div>
+              <h4>Steps to Reproduce</h4>
+              <ul>
+                <li>Add several todo items</li>
+                <li>Click on the second task in the list</li>
+                <li>Disable the task by pressing the x button</li>
+                <li>change the value in the top input</li>
+                <li>press save</li>
+              </ul>
+              <h4>Expected Behaviour</h4>
+              <div>The input should have been cleared when the todo was disabled</div>
+            </div>
+          </iron-collapse>
+        </li>
+      </ul>
 
-  <script>
-    const bugs = document.querySelector(".bugs");
-    bugs.addEventListener("click", (evt) => {
-      if (evt.target.classList.contains("collapseTitle")) {
-        evt.target.nextElementSibling.toggle();
-      }
-    });
-  </script>
-</body>
+      <h3>Feature Requests:</h3>
+
+      <ul class="features collapses">
+        <li class="feature">
+          <strong class="collapse-title">The list should accept no more than 10 items</strong>
+          <iron-collapse id="collapse">
+            <h4>Acceptance criteria</h4>
+            <div>Upon adding the eleventh item the end user should be alerted to the fact that this list only supports 10 items.</div>
+          </iron-collapse>
+        </li>
+      </ul>
+    </p>
+
+    <broken-todo max-items="10"></broken-todo>
+
+    <script>
+      [].forEach.call(document.querySelectorAll(".collapses"), function(elem) {
+        elem.addEventListener("click", (evt) => {
+          if (evt.target.classList.contains("collapse-title")) {
+            evt.target.nextElementSibling.toggle();
+          }
+        });
+      });
+    </script>
+  </body>
 
 </html>
