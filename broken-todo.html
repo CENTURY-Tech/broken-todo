@@ -63,9 +63,10 @@
               enabled: true
             });
           } else {
+            const todo = this.todos[index];
             this.set(`todos.${index}`, {
               value,
-              enabled: true
+              enabled: todo.enabled
             });
           }
 
