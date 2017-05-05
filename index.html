@@ -9,72 +9,70 @@
     <title>Broken Todo List</title>
 
     <script src="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
+    
+    <link rel="stylesheet" href="css/styles.css">
 
     <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/iron-collapse/iron-collapse.html">
     <link rel="import" href="./broken-todo.html">
-
-    <style>
-      .collapse-title {
-        cursor: pointer;
-      }
-
-      iron-collapse {
-        background: #eee;
-        padding: 1em;
-      }
-    </style>
   </head>
 
   <body>
-    <h2>Broken Todo</h2>
+    <div class="container">
 
-    <div>
+    <div class="box">
+      <h2>Broken Todo</h2>
       <h3>Known Bugs:</h3>
 
       <ul class="bugs collapses">
         <li class="bug">
-          <strong class="collapse-title">Should not add empty items</strong>
+          <div class="collapse-title">Should not add empty items</div>
           <iron-collapse id="collapse">
-            <h4>Steps to Reproduce</h4>
-            <ul>
-              <li>Press save. A new todo item with an empty title was added.</li>
-            </ul>
-            <h4>Expected Behaviour</h4>
-            <div>No item should be added. Cancel should be disabled until text is added</div>
+            <div>
+              <h4>Steps to Reproduce</h4>
+              <ul>
+                <li>Press save. A new todo item with an empty title was added.</li>
+              </ul>
+              <h4>Expected Behaviour</h4>
+              <p>No item should be added. Cancel should be disabled until text is added</p>
+            </div>
           </iron-collapse>
         </li>
 
         <li class="bug">
-          <strong class="collapse-title">Cancel should reset the input</strong>
+          <div class="collapse-title">Cancel should reset the input</div>
           <iron-collapse id="collapse">
-            <h4>Steps to Reproduce</h4>
-            <ul>
-              <li>Type something in the input element</li>
-              <li>Press cancel</li>
-              <li>Press save. A new todo item was added.</li>
-            </ul>
-            <h4>Expected Behaviour</h4>
-            <div>No item should be added.</div>
+            <div>
+              <h4>Steps to Reproduce</h4>
+              <ul>
+                <li>Type something in the input element</li>
+                <li>Press cancel</li>
+                <li>Press save. A new todo item was added.</li>
+              </ul>
+              <h4>Expected Behaviour</h4>
+              <p>No item should be added.</p>
+            </div>
           </iron-collapse>
         </li>
 
         <li class="bug">
-          <strong class="collapse-title">Editing the first item duplicates it</strong>
+          <div class="collapse-title">Editing the first item duplicates it</div>
           <iron-collapse id="collapse">
-            <h4>Steps to Reproduce</h4>
-            <ul>
-              <li>Add several todo items</li>
-              <li>Click on the first item on the list</li>
-              <li>Change the text in the input element</li>
-              <li>Press save. A new todo item was added</li>
-            </ul>
-            <h4>Expected Behaviour</h4>
-            <div>It should change the title of the first item in the todo list.</div>
+            <div>
+              <h4>Steps to Reproduce</h4>
+              <ul>
+                <li>Add several todo items</li>
+                <li>Click on the first item on the list</li>
+                <li>Change the text in the input element</li>
+                <li>Press save. A new todo item was added</li>
+              </ul>
+              <h4>Expected Behaviour</h4>
+              <p>It should change the title of the first item in the todo list.</p>
+            </div>
           </iron-collapse>
         </li>
 
         <li class="bug">
-          <strong class="collapse-title">Disabled items may still be editable</strong>
+          <div class="collapse-title">Disabled items may still be editable</div>
           <iron-collapse id="collapse">
             <div>
               <h4>Steps to Reproduce</h4>
@@ -82,17 +80,17 @@
                 <li>Add several todo items</li>
                 <li>Click on the second task in the list</li>
                 <li>Disable the task by pressing the completed checkbox</li>
-                <li>change the value in the top input</li>
-                <li>press save</li>
+                <li>Change the value in the top input</li>
+                <li>Press save</li>
               </ul>
               <h4>Expected Behaviour</h4>
-              <div>The input should have been cleared when the todo was disabled</div>
+              <p>The input should have been cleared when the todo was disabled</p>
             </div>
           </iron-collapse>
         </li>
 
         <li class="bug">
-          <strong class="collapse-title">Clear completed tasks clear only some elements</strong>
+          <div class="collapse-title">Clear completed tasks clear only some elements</div>
           <iron-collapse id="collapse">
             <div>
               <h4>Steps to Reproduce</h4>
@@ -113,16 +111,22 @@
 
       <ul class="features collapses">
         <li class="feature">
-          <strong class="collapse-title">The list should accept no more than 10 items</strong>
+          <div class="collapse-title">The list should accept no more than 10 items</div>
           <iron-collapse id="collapse">
-            <h4>Acceptance criteria</h4>
-            <div>Upon adding the eleventh item the end user should be alerted to the fact that this list only supports 10 items.</div>
+            <div>
+              <h4>Acceptance criteria</h4>
+              <p>Upon adding the eleventh item the end user should be alerted to the fact that this list only supports 10 items.</p>
+            </div>
           </iron-collapse>
         </li>
       </ul>
     </div>
+    
+    <div class="box">
+      <broken-todo max-items="10"></broken-todo>
+    </div>
 
-    <broken-todo max-items="10"></broken-todo>
+    </div>
 
     <script>
       [].forEach.call(document.querySelectorAll(".collapses"), function(elem) {
