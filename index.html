@@ -28,12 +28,12 @@
   <body>
     <h2>Broken Todo</h2>
 
-    <p>
+    <div>
       <h3>Known Bugs:</h3>
 
       <ul class="bugs collapses">
         <li class="bug">
-          <strong class="collapse-title">should not add empty items</strong>
+          <strong class="collapse-title">Should not add empty items</strong>
           <iron-collapse id="collapse">
             <h4>Steps to Reproduce</h4>
             <ul>
@@ -45,7 +45,7 @@
         </li>
 
         <li class="bug">
-          <strong class="collapse-title">cancel should reset the input</strong>
+          <strong class="collapse-title">Cancel should reset the input</strong>
           <iron-collapse id="collapse">
             <h4>Steps to Reproduce</h4>
             <ul>
@@ -59,7 +59,7 @@
         </li>
 
         <li class="bug">
-          <strong class="collapse-title">editing the first item duplicates it</strong>
+          <strong class="collapse-title">Editing the first item duplicates it</strong>
           <iron-collapse id="collapse">
             <h4>Steps to Reproduce</h4>
             <ul>
@@ -74,19 +74,36 @@
         </li>
 
         <li class="bug">
-          <strong class="collapse-title">disabled items may still be editable</strong>
+          <strong class="collapse-title">Disabled items may still be editable</strong>
           <iron-collapse id="collapse">
             <div>
               <h4>Steps to Reproduce</h4>
               <ul>
                 <li>Add several todo items</li>
                 <li>Click on the second task in the list</li>
-                <li>Disable the task by pressing the x button</li>
+                <li>Disable the task by pressing the completed checkbox</li>
                 <li>change the value in the top input</li>
                 <li>press save</li>
               </ul>
               <h4>Expected Behaviour</h4>
               <div>The input should have been cleared when the todo was disabled</div>
+            </div>
+          </iron-collapse>
+        </li>
+
+        <li class="bug">
+          <strong class="collapse-title">Clear completed tasks clear only some elements</strong>
+          <iron-collapse id="collapse">
+            <div>
+              <h4>Steps to Reproduce</h4>
+              <ul>
+                <li>Add several todo items</li>
+                <li>Click on the checkboxes to complete them all</li>
+                <li>Press the clear completed tasks button</li>
+                <li>Some completed items will remain in the todo list</li>
+              </ul>
+              <h4>Expected Behaviour</h4>
+              <div>All completed and only completed tasks should be deleted</div>
             </div>
           </iron-collapse>
         </li>
@@ -103,7 +120,7 @@
           </iron-collapse>
         </li>
       </ul>
-    </p>
+    </div>
 
     <broken-todo max-items="10"></broken-todo>
 
