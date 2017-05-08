@@ -9,7 +9,7 @@
     <title>Broken Todo List</title>
 
     <script src="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/webcomponentsjs/webcomponents-lite.min.js"></script>
-    
+
     <link rel="stylesheet" href="css/styles.css">
 
     <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/1.5.0/lib/iron-collapse/iron-collapse.html">
@@ -19,113 +19,123 @@
   <body>
     <div class="container">
 
-    <div class="box">
-      <h2>Broken Todo</h2>
-      <h3>Known Bugs:</h3>
+      <div class="box">
+        <h2>Broken Todo</h2>
+        <h3>Known Bugs:</h3>
 
-      <ul class="bugs collapses">
-        <li class="bug">
-          <div class="collapse-title">Should not add empty items</div>
-          <iron-collapse id="collapse">
-            <div>
-              <h4>Steps to Reproduce</h4>
-              <ul>
-                <li>Press save. A new todo item with an empty title was added.</li>
-              </ul>
-              <h4>Expected Behaviour</h4>
-              <p>No item should be added. Cancel should be disabled until text is added</p>
-            </div>
-          </iron-collapse>
-        </li>
+        <ul class="bugs collapses">
+          <li class="bug">
+            <div class="collapse-title">Should not add empty items</div>
+            <iron-collapse id="collapse">
+              <div>
+                <h4>Steps to Reproduce</h4>
 
-        <li class="bug">
-          <div class="collapse-title">Cancel should reset the input</div>
-          <iron-collapse id="collapse">
-            <div>
-              <h4>Steps to Reproduce</h4>
-              <ul>
-                <li>Type something in the input element</li>
-                <li>Press cancel</li>
-                <li>Press save. A new todo item was added.</li>
-              </ul>
-              <h4>Expected Behaviour</h4>
-              <p>No item should be added.</p>
-            </div>
-          </iron-collapse>
-        </li>
+                <ul>
+                  <li>Press save. A new todo item with an empty title was added.</li>
+                </ul>
 
-        <li class="bug">
-          <div class="collapse-title">Editing the first item duplicates it</div>
-          <iron-collapse id="collapse">
-            <div>
-              <h4>Steps to Reproduce</h4>
-              <ul>
-                <li>Add several todo items</li>
-                <li>Click on the first item on the list</li>
-                <li>Change the text in the input element</li>
-                <li>Press save. A new todo item was added</li>
-              </ul>
-              <h4>Expected Behaviour</h4>
-              <p>It should change the title of the first item in the todo list.</p>
-            </div>
-          </iron-collapse>
-        </li>
+                <h4>Expected Behaviour</h4>
+                <p>No item should be added. Cancel should be disabled until text is added</p>
+              </div>
+            </iron-collapse>
+          </li>
 
-        <li class="bug">
-          <div class="collapse-title">Disabled items may still be editable</div>
-          <iron-collapse id="collapse">
-            <div>
-              <h4>Steps to Reproduce</h4>
-              <ul>
-                <li>Add several todo items</li>
-                <li>Click on the second task in the list</li>
-                <li>Disable the task by pressing the completed checkbox</li>
-                <li>Change the value in the top input</li>
-                <li>Press save</li>
-              </ul>
-              <h4>Expected Behaviour</h4>
-              <p>The input should have been cleared when the todo was disabled</p>
-            </div>
-          </iron-collapse>
-        </li>
+          <li class="bug">
+            <div class="collapse-title">Cancel should reset the input</div>
+            <iron-collapse id="collapse">
+              <div>
+                <h4>Steps to Reproduce</h4>
 
-        <li class="bug">
-          <div class="collapse-title">Clear completed tasks clear only some elements</div>
-          <iron-collapse id="collapse">
-            <div>
-              <h4>Steps to Reproduce</h4>
-              <ul>
-                <li>Add several todo items</li>
-                <li>Click on the checkboxes to complete them all</li>
-                <li>Press the clear completed tasks button</li>
-                <li>Some completed items will remain in the todo list</li>
-              </ul>
-              <h4>Expected Behaviour</h4>
-              <div>All completed and only completed tasks should be deleted</div>
-            </div>
-          </iron-collapse>
-        </li>
-      </ul>
+                <ul>
+                  <li>Type something in the input element</li>
+                  <li>Press cancel</li>
+                  <li>Press save. A new todo item was added.</li>
+                </ul>
 
-      <h3>Feature Requests:</h3>
+                <h4>Expected Behaviour</h4>
+                <p>No item should be added.</p>
+              </div>
+            </iron-collapse>
+          </li>
 
-      <ul class="features collapses">
-        <li class="feature">
-          <div class="collapse-title">The list should accept no more than 10 items</div>
-          <iron-collapse id="collapse">
-            <div>
-              <h4>Acceptance criteria</h4>
-              <p>Upon adding the eleventh item the end user should be alerted to the fact that this list only supports 10 items.</p>
-            </div>
-          </iron-collapse>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="box">
-      <broken-todo max-items="10"></broken-todo>
-    </div>
+          <li class="bug">
+            <div class="collapse-title">Editing the first item duplicates it</div>
+            <iron-collapse id="collapse">
+              <div>
+                <h4>Steps to Reproduce</h4>
 
+                <ul>
+                  <li>Add several todo items</li>
+                  <li>Click on the first item on the list</li>
+                  <li>Change the text in the input element</li>
+                  <li>Press save. A new todo item was added</li>
+                </ul>
+
+                <h4>Expected Behaviour</h4>
+                <p>It should change the title of the first item in the todo list.</p>
+              </div>
+            </iron-collapse>
+          </li>
+
+          <li class="bug">
+            <div class="collapse-title">Disabled items may still be editable</div>
+            <iron-collapse id="collapse">
+              <div>
+                <h4>Steps to Reproduce</h4>
+
+                <ul>
+                  <li>Add several todo items</li>
+                  <li>Click on the second task in the list</li>
+                  <li>Disable the task by pressing the completed checkbox</li>
+                  <li>Change the value in the top input</li>
+                  <li>Press save</li>
+                </ul>
+
+                <h4>Expected Behaviour</h4>
+                <p>The input should have been cleared when the todo was disabled</p>
+              </div>
+            </iron-collapse>
+          </li>
+
+          <li class="bug">
+            <div class="collapse-title">Clear completed tasks clear only some elements</div>
+            <iron-collapse id="collapse">
+              <div>
+                <h4>Steps to Reproduce</h4>
+
+                <ul>
+                  <li>Add several todo items</li>
+                  <li>Click on the checkboxes to complete them all</li>
+                  <li>Press the clear completed tasks button</li>
+                  <li>Some completed items will remain in the todo list</li>
+                </ul>
+
+                <h4>Expected Behaviour</h4>
+                <p>All completed and only completed tasks should be deleted</p>
+              </div>
+            </iron-collapse>
+          </li>
+        </ul>
+
+        <h3>Feature Requests:</h3>
+
+        <ul class="features collapses">
+          <li class="feature">
+            <div class="collapse-title">The list should accept no more than 10 items</div>
+            <iron-collapse id="collapse">
+              <div>
+                <h4>Acceptance criteria</h4>
+                <p>Upon adding the eleventh item the end user should be alerted to the fact that this list only supports 10
+                  items.</p>
+              </div>
+            </iron-collapse>
+          </li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <broken-todo max-items="10"></broken-todo>
+      </div>
     </div>
 
     <script>
